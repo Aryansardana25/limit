@@ -3,6 +3,7 @@ import MainLayout from "./layouts/MainLayout";
 import Login from "./pages/Login";
 import Market from "./pages/Market";
 import Signup from "./pages/Signup";
+import ForgotPassword from "./pages/ForgotPassword"; // ✅ Import ForgotPassword
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route index element={<Login />} />
           <Route path="market" element={<Market />} />
           <Route path="signup" element={<Signup />} />
+          <Route path="forgot-password" element={<ForgotPassword />} /> {/* ✅ New Route */}
         </Route>
       </Routes>
     </Router>

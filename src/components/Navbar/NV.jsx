@@ -15,7 +15,7 @@ const NV = () => {
       </div>
 
       <div className="right-section">
-        <Link to="/login" className="btn">Log in</Link>
+        <Link to="/" className="btn">Log in</Link>
         <Link to="/signup" className="btn">Sign Up</Link> 
         <DarkMode />
       </div>
