@@ -12,7 +12,7 @@ import {
   InputWrapper,
   Label,
   NewPositionedImageSignup, 
-} from "../components/styledComponent/styled";
+} from "../components/styledComponent/signup.styles";
 import signupImage from "../assets/Frame 339.png";
 import newSignupImage from "../assets/Frame 328 (1).png"; 
 

@@ -8,30 +8,31 @@ import {
   RightSection,
   Title,
   Form,
+  InputWrapper,
+  Label,
+  LinkWrapper,
+  StyledLink,
+  VerticalBar,
   StyledBox,
   PositionedImage,
   ImageText,
   BoxContainer,
   StyledImageBox,
-  InputWrapper,
-  Label,
-  LinkWrapper, 
-  StyledLink, 
-  VerticalBar, 
-} from "../components/styledComponent/login.styled";
+} from "../components/styledComponent/otp.styled";
 import sampleImage from "../assets/Group 410.png";
 import sampleImage1 from "../assets/Frame 329.png";
 import sampleImage2 from "../assets/Frame 330.png";
 import sampleImage3 from "../assets/Frame 331.png";
 import sampleImage4 from "../assets/Frame 332.png";
 
-const Login = () => {
+const OtpVerification = () => {
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
+    otp: "",
   });
 
   const [errors, setErrors] = useState({});
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -39,16 +40,17 @@ const Login = () => {
 
   const validate = () => {
     let tempErrors = {};
+
     if (!formData.email.trim()) {
       tempErrors.email = "Email is required";
     } else if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
       tempErrors.email = "Invalid email format";
     }
 
-    if (!formData.password) {
-      tempErrors.password = "Password is required";
-    } else if (formData.password.length < 6) {
-      tempErrors.password = "Password must be at least 6 characters";
+    if (!formData.otp) {
+      tempErrors.otp = "OTP is required";
+    } else if (formData.otp.length !== 4 || !/^\d{4}$/.test(formData.otp)) {
+      tempErrors.otp = "OTP must be a 4-digit number";
     }
 
     setErrors(tempErrors);
@@ -58,8 +60,8 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      console.log("Login Data:", formData);
-      alert("Login Successful");
+      console.log("OTP Data:", formData);
+      alert("OTP Verified Successfully!");
     }
   };
 
@@ -69,7 +71,7 @@ const Login = () => {
         <LeftSection>
           <StyledBox>
             <PositionedImage src={sampleImage} alt="Styled Box Image" />
-            <ImageText>Explore the Crypto World with Bluechain</ImageText>
+            <ImageText>Secure Your Account with OTP Verification</ImageText>
             <BoxContainer>
               <StyledImageBox src={sampleImage1} alt="Image 1" />
               <StyledImageBox src={sampleImage2} alt="Image 2" />
@@ -78,8 +80,9 @@ const Login = () => {
             </BoxContainer>
           </StyledBox>
         </LeftSection>
+
         <RightSection>
-          <Title>Login</Title>
+          <Title>OTP Verification</Title>
           <Form onSubmit={handleSubmit}>
             <InputWrapper>
               <Label>Email Address</Label>
@@ -92,25 +95,26 @@ const Login = () => {
               />
               {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
             </InputWrapper>
+
             <InputWrapper>
-              <Label>Password</Label>
+              <Label>Enter OTP</Label>
               <Input
-                type="password"
-                name="password"
-                value={formData.password}
+                type="text"
+                name="otp"
+                value={formData.otp}
                 onChange={handleChange}
-                placeholder="Enter your password"
+                placeholder="Enter 4-digit OTP"
+                maxLength="4"
               />
-              {errors.password && (
-                <p style={{ color: "red" }}>{errors.password}</p>
-              )}
+              {errors.otp && <p style={{ color: "red" }}>{errors.otp}</p>}
             </InputWrapper>
-            <Button type="submit">Log In</Button>
+
+            <Button type="submit">Verify OTP</Button>
 
             <LinkWrapper>
-              <StyledLink href="/register">Register Now</StyledLink>
+              <StyledLink href="/resend-otp">Resend OTP</StyledLink>
               <VerticalBar>|</VerticalBar>
-              <StyledLink href="/forgot-password">Forgot Password</StyledLink>
+              <StyledLink href="/login">Back to Login</StyledLink>
             </LinkWrapper>
           </Form>
         </RightSection>
@@ -119,5 +123,4 @@ const Login = () => {
   );
 };
 
-
-export default Login;
+export default OtpVerification;

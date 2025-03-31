@@ -6,7 +6,7 @@ import {
   ForgotPasswordInputWrapper,
   ForgotPasswordInput,
   ForgotPasswordButton,
-} from "../components/styledComponent/styled";
+} from "../components/styledComponent/forgot.styled";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +16,6 @@ const ForgotPassword = () => {
     setEmail(e.target.value);
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Password reset link sent to:", email);
